@@ -1,6 +1,8 @@
 package Client;
 import java.io.*;
 import java.net.*;
+
+import viewClient.HomeWindow;
  
 public class Client {
  
@@ -20,6 +22,7 @@ public class Client {
         t1 = new Thread(new Connexion(socket));
         t1.start();
          
+        new HomeWindow();
          
          
     } catch (UnknownHostException e) {

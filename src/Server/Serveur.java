@@ -10,8 +10,8 @@ public class Serveur {
     public static void main(String[] args) {
          
         try {
-        	///InetAddress ip = InetAddress.getLocalHost();
-        	//System.out.println(ip);
+        	InetAddress ip = InetAddress.getLocalHost();
+        	System.out.println(ip);
             ss = new ServerSocket(2222);
             System.out.println("Le serveur est à l'écoute du port "+ss.getLocalPort());
              
