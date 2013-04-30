@@ -20,6 +20,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import Client.Client;
+
 
 public class HomeWindow extends JFrame {
 	  private JPanel container = new JPanel();
@@ -28,6 +30,7 @@ public class HomeWindow extends JFrame {
 	  private JLabel labelPassword = new JLabel("Password");
 	  private JButton btnConnection = new JButton ("Connection");
 	  private JButton btnSubscription = new JButton ("Subscription");
+	  private Client client;
 	  
 	  public HomeWindow(){
 		    this.setTitle("Home");
@@ -49,23 +52,38 @@ public class HomeWindow extends JFrame {
 	        
 	        btnConnection.addActionListener(new ActionListener(){
 	        	  public void actionPerformed(ActionEvent event){
-	        	    new Connexion();
+	        	    ViewConnexion vc = new ViewConnexion();
+	        	   
+	        	    client = new Client(vc.getLogin(), vc.getPassword());
+	        	    
+	                container.removeAll();
+	                displayClientList();
 	        	  }
 	        	});
 	        
 	        btnSubscription.addActionListener(new ActionListener(){
 	        	  public void actionPerformed(ActionEvent event){
-	        	    //Action !
+	        		  new ViewSubscription();           
+		              container.removeAll();
+		              displayClientList();  
 	        	  }
 	        	});
 		    this.setContentPane(container);
 		    this.setVisible(true); 
 	  }
 	  
-	  /*public static void main(String[] args){
-		  new HomeWindow();
-	    //Fenetre fenetre = new Fenetre();
-	      
-	  }  */
+	  public void displayClientList(){
+		  repaint();
+		  
+		  
+	  }
+	  
+	  public static void main(String[] args) {
+		  HomeWindow hw = new HomeWindow();
+		  
+		  
+	  
+	  }
+	
 
 }

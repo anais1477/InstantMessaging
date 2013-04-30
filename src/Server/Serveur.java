@@ -1,10 +1,12 @@
 package Server;
 import java.io.*;
 import java.net.*;
+import java.util.Map;
  
 public class Serveur {
  public static ServerSocket ss = null;
  public static Thread t;
+ public static Map<String, String> listClients;
  
   
     public static void main(String[] args) {

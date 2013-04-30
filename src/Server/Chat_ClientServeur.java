@@ -32,7 +32,7 @@ public class Chat_ClientServeur implements Runnable {
         t4.start();
          
         } catch (IOException e) {
-            System.err.println(login +"s'est déconnecté ");
+            System.out.println(login +"s'est déconnecté ");
         }
 }
 }

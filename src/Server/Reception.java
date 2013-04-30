@@ -7,6 +7,7 @@ public class Reception implements Runnable {
  
     private BufferedReader in;
     private String message = null, login = null;
+    protected volatile boolean running = true;
      
     public Reception(BufferedReader in, String login){
          
@@ -16,15 +17,16 @@ public class Reception implements Runnable {
      
     public void run() {
          
-        while(true){
+        while(running){
             try {
                  
             message = in.readLine();
             System.out.println(login+" : "+message);
              
             } catch (IOException e) {
-                 
-                e.printStackTrace();
+                running = false;
+                System.out.println(login +"s'est déconnecté ");
+                //e.printStackTrace();
             }
         }
     }

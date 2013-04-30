@@ -13,6 +13,7 @@ import java.text.NumberFormat;
 
 import javax.swing.Box;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -21,8 +22,11 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
+
+import Client.Client;
+import Client.Connexion;
  
-public class Connexion extends JFrame {
+public class ViewConnexion extends JDialog  {
 	  private JPanel container = new JPanel();
 	  private JTextField fieldUser = new JTextField(15);
 	  private JPasswordField fieldPassword = new JPasswordField(15);
@@ -30,11 +34,14 @@ public class Connexion extends JFrame {
 	  private JLabel labelPassword = new JLabel("Password");
 	  private JButton btnConnect = new JButton ("Connect");
 	  private JButton btnCancel = new JButton ("Cancel");
+	  String login = "";
+	  String password = "";
 	 
-	  public Connexion(){
+	  public ViewConnexion(){
 		    this.setTitle("Connexion");
 		    this.setSize(400, 400);
-		    this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		    this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);	
+			this.setModalityType(ModalityType.APPLICATION_MODAL);
 		    this.setLocationRelativeTo(null);
 		    container.setBackground(Color.white);
 		    container.setLayout(new BorderLayout());
@@ -64,13 +71,14 @@ public class Connexion extends JFrame {
 	        vBox.add(hBox1);
 	        vBox.add(Box.createVerticalStrut(5));
 	        vBox.add(hBox2);
-	        //vBox.add(Box.createGlue());
 	        vBox.add(hBox3);
 	        
 	        btnConnect.addActionListener(new ActionListener(){
 	        	  public void actionPerformed(ActionEvent event){
-	        	    System.out.println(fieldUser.getText());
-	        	    System.out.println(fieldPassword.getPassword());
+	        	    login = fieldUser.getText();
+	        	    password = new String(fieldPassword.getPassword());
+	        		setVisible(false);
+	        		dispose();
 	        	  }
 	        	});
 	        
@@ -84,4 +92,13 @@ public class Connexion extends JFrame {
 		    this.setContentPane(container);
 		    this.setVisible(true); 
 	}
+	  
+	  public String getLogin(){
+		  return this.login;
+	  }
+	  
+	  public String getPassword(){
+		  return this.password;
+	  }
+	  
 }

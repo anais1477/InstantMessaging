@@ -9,9 +9,9 @@ public class Client {
     public static Socket socket = null;
     public static Thread t1;
      
-    public static void main(String[] args) {
+    //public static void main(String[] args) {
      
-         
+    public Client(String login, String pass){     
     try {
     	
     	InetAddress anais = InetAddress.getByName("192.168.0.9");
@@ -19,16 +19,16 @@ public class Client {
         socket = new Socket(anais,2222);
         System.out.println("Connexion établie avec le serveur, authentification :"); // Si le message s'affiche c'est que je suis connecté
          
-        t1 = new Thread(new Connexion(socket));
+        t1 = new Thread(new Connexion(socket, login , pass));
         t1.start();
          
-        new HomeWindow();
+        //new HomeWindow();
          
          
     } catch (UnknownHostException e) {
       System.out.println("Impossible de se connecter à l'adresse "+socket.getLocalAddress());
     } catch (IOException e) {
-      System.out.println("Aucun serveur à l'écoute du port "+21315);
+      System.out.println("Aucun serveur à l'écoute du port "+socket.getLocalAddress());
     }
      
      

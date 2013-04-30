@@ -17,6 +17,12 @@ public class Connexion implements Runnable {
          
         socket = s;
     }
+    
+    public Connexion(Socket s, String login, String password){        
+        socket = s;
+        this.login = login;
+        this.pass = password;
+    }
      
     public void run() {
          
@@ -27,29 +33,29 @@ public class Connexion implements Runnable {
         sc = new Scanner(System.in);
      
          
-        while(!connect ){
+        if(!connect ){
          
-        System.out.println(in.readLine());
-        login = sc.nextLine();
-        out.println(login);
-        out.flush();
+	        System.out.println(in.readLine());
+	        //login = sc.nextLine();
+	        out.println(login);
+	        out.flush();
+	         
+	        System.out.println(in.readLine());
+	        //pass = sc.nextLine();
+	        out.println(pass);
+	        out.flush();
+	         
+	        if(in.readLine().equals("connecte")){
+	             
+	        System.out.println("Je suis connecté ");
+	        connect = true;
+	          }
+	         
+	        else {
+	            System.err.println("Vos informations sont incorrectes ");
+	          }
          
-        System.out.println(in.readLine());
-        pass = sc.nextLine();
-        out.println(pass);
-        out.flush();
-         
-        if(in.readLine().equals("connecte")){
-             
-        System.out.println("Je suis connecté ");
-        connect = true;
-          }
-         
-        else {
-            System.err.println("Vos informations sont incorrectes ");
-          }
-         
-    }
+        }
              
             t2 = new Thread(new Chat_ClientServeur(socket));
             t2.start();
